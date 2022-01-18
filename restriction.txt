@@ -1,0 +1,11 @@
+(a) For COBOL, in order to force you to program as in the old days, ONLY 2 keywords
+are allowed in selection and loop statements: “IF” and “GOTO”. You are not allowed
+to use modern control constructs, such as if-then-else or while loop. Using any other
+keywords will receive marks deduction. But for C, you can use whatever you want.
+
+(b) For COBOL and C, you cannot use arrays or other data structure to store the records
+of “master.txt”. Whenever you need to search the records of “master.txt”, read the file
+directly.
+
+(c) For COBOL, you cannot use “merge” statement directly. Please write a merge function
+to merge two files by yourself.
