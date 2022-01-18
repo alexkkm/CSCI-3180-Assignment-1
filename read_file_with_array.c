@@ -22,10 +22,5 @@ int main()
     printf("info[2]:%s\n", info[2]);
     printf("info[3]:%s\n", info[2]);
 
-    // write result
-    /*
-    FILE *fw = fopen("result.txt", "w+");
-    fprintf(fw, "Wite sth");
-    */
     return 0;
 }
