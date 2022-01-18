@@ -38,8 +38,9 @@ void writefile()
     fprintf(fw, "Wite sth");
 }
 
-// Return the string with slice_to characters, starting from slice_from
-char *str_slice(char str[], int slice_from, int slice_to)
+// Return the string starting with (slice_to)th character, and ending from (slice_from)th character
+char *
+str_slice(char str[], int slice_from, int slice_to)
 {
     // if a string is empty, returns nothing
     if (str[0] == '\0')
@@ -87,7 +88,7 @@ char *str_slice(char str[], int slice_from, int slice_to)
     return buffer;
 }
 
-void ReadAccount(int lineNum)
+void ReadAccountName(int lineNum)
 {
     // READ File
     char buff[10000] = "null";
@@ -106,14 +107,53 @@ void ReadAccount(int lineNum)
     printf("%s", str_slice(input, 0, 20));
 }
 
+// Not success
+void ReadAccountNumber(int lineNum)
+{
+    // READ File
+    char buff[10000] = "null";
+    char input[] = "null";
+
+    // open the master.txt with
+    FILE *fp = fopen("./master.txt", "rt");
+
+    // fgets for lineNum times so that we can read the (lineNum)th lines
+    for (int i = 0; i < lineNum; i++)
+    {
+        fgets(buff, 10000, fp);
+        strcpy(input, buff);
+    }
+    printf("%s", str_slice(input, 20, 36));
+}
+
+// Success
+void ReadAccountPassword(int lineNum)
+{
+    // READ File
+    char buff[10000] = "null";
+    char input[] = "null";
+
+    // open the master.txt with
+    FILE *fp = fopen("./master.txt", "rt");
+
+    // fgets for lineNum times so that we can read the (lineNum)th lines
+    for (int i = 0; i < lineNum; i++)
+    {
+        fgets(buff, 10000, fp);
+        strcpy(input, buff);
+    }
+    printf("%s", str_slice(input, 36, 42));
+}
+
 void TestGetFirstUserAccount()
 {
-    ReadAccount(0);
+    char str[] = "abcdefghijkl";
+    printf("%d", strcmp(str_slice(str, 0, 2), "def") == 0);
 }
 
 int main()
 {
     printf("Testing:\n");
-    ReadAccount(1);
+    ReadAccountPassword(2);
     return 0;
 }
