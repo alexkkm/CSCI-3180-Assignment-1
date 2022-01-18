@@ -53,7 +53,7 @@ char *str_slice(char str[], int slice_from, int slice_to)
 
 int main()
 {
-    char str[] = "abcdefghijkl";
-    printf("%s", str_slice(str, 0, 4));
+    char str[] = "1234567890";
+    printf("%d", atoi(str));
     return 0;
 }

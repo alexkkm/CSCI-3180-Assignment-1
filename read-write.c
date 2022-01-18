@@ -123,7 +123,9 @@ void ReadAccountNumber(int lineNum)
         fgets(buff, 10000, fp);
         strcpy(input, buff);
     }
-    printf("%s", str_slice(input, 20, 36));
+    char i[] = "null";
+    strcpy(i, str_slice(input, 20, 36));
+    printf("%s", str_slice(input, 20, 37));
 }
 
 // Success
@@ -154,6 +156,6 @@ void TestGetFirstUserAccount()
 int main()
 {
     printf("Testing:\n");
-    ReadAccountPassword(2);
+    ReadAccountNumber(2);
     return 0;
 }
