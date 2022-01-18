@@ -8,7 +8,6 @@ int main()
     int atm_num = 0;
     FILE *fp;
     char buff[10000];
-    int valid = 0;
     int account;
     int password;
 
@@ -37,6 +36,7 @@ int main()
 
     /*
         // Account & Password
+        int valid = 0;
         while (valid == 0)
         {
             printf("=> ACCOUNT\n");
@@ -44,7 +44,7 @@ int main()
             printf("=> PASSWORD\n");
             scanf("%d", &password);
 
-            // READ File
+            // Scan for the account and password
             fp = fopen("master.txt", "R");
             fscanf(fp, "%s", buff);
             printf("%s", buff);
