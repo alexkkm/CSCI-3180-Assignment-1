@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void str_slice(char *text, int position, int length)
+void simple_str_slice(char *text, int position, int length)
 {
     char subtext[length];
     strncpy(subtext, &text[position], length - 1);
@@ -21,10 +21,20 @@ char *str_cut(char *text, int position, int length)
     return str;
 }
 
+char *str_slice(char *target, int position, int length)
+{
+    char *temp = (char *)malloc(strlen(target) * sizeof(char));
+    char subtext[length];
+    strncpy(subtext, &target[position], length - 1);
+    subtext[length - 1] = '\0';
+    strcpy(temp, subtext);
+    return temp;
+}
+
 int main(void)
 {
     // str_slice("012345678901234567890", 2, 18);
-    printf("%s", str_cut("012345678901234567890", 2, 18));
+    printf("%s", str_slice("012345678901234567890", 2, 18));
 
     return 0;
 }
