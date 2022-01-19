@@ -34,7 +34,7 @@ char *str_slice(char *target, int position, int length)
 int main(void)
 {
     // str_slice("012345678901234567890", 2, 18);
-    printf("%s", str_slice("012345678901234567890", 2, 18));
+    printf("%s", str_slice("012345678901234567890", 2, 19));
 
     return 0;
 }
