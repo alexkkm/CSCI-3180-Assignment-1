@@ -39,8 +39,7 @@ void writefile()
 }
 
 // Return the string starting with (slice_to)th character, and ending from (slice_from)th character
-char *
-str_slice(char str[], int slice_from, int slice_to)
+char *str_slice(char str[], int slice_from, int slice_to)
 {
     // if a string is empty, returns nothing
     if (str[0] == '\0')
@@ -125,7 +124,8 @@ void ReadAccountNumber(int lineNum)
     }
     char i[] = "null";
     strcpy(i, str_slice(input, 20, 36));
-    printf("%s", str_slice(input, 20, 37));
+    // strcpy(i, str_slice(i, 0, -2));
+    printf("%s", i);
 }
 
 // Success
@@ -156,6 +156,6 @@ void TestGetFirstUserAccount()
 int main()
 {
     printf("Testing:\n");
-    ReadAccountNumber(2);
+    ReadAccountNumber(10);
     return 0;
 }
