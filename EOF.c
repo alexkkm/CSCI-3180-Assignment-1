@@ -13,11 +13,28 @@ char *str_slice(char *target, int position, int length)
     return temp;
 }
 
+// comparing each character of the two strings
+int stringCompare(char *a, char *b)
+{
+    int ctr = 0;
+    for (int i = 0; i < strlen(a); ++i)
+    {
+        if (a[i] != b[i])
+
+        {
+            ctr = 1;
+            break;
+            printf("At postion %d\n", i);
+        }
+    }
+    return ctr;
+}
+
 void ReadAllLine()
 {
     // READ File
     char buff[10000] = "null";
-    char input[58];
+    char input[59];
 
     // open the master.txt with
     FILE *fp = fopen("./master.txt", "rt");
@@ -33,33 +50,38 @@ void ReadAllLine()
 int CheckAccountPassword(char *account, char *password)
 {
     // READ File
-    char buff[10000] = "null";
-    char input[58];
-    char input2[58];
     int valid = 0;
+    char buff[59];
+
     char correctAccount[16];
     char correctPassword[6];
 
     // open the master.txt with
     FILE *fp = fopen("./master.txt", "rt");
     // fgets for lineNum times so that we can read the (lineNum)th lines
-    while (fgets(buff, 60, fp) != NULL)
+    while (fgets(buff, 59, fp) != NULL)
     {
-        strcpy(input, buff);
-        strcpy(correctAccount, str_slice(input, 20, 16));
-        // Cut the account number and check
+        printf("buff before slice:%s\n", buff);
+        strcpy(correctAccount, str_slice(buff, 20, 16));
+        strcpy(correctPassword, str_slice(buff, 36, 6));
+        printf("input password:%s\n", password);
+        printf("Correct Password:%s\n", correctPassword);
+        account[strlen(account - 1)] = '\0';
+        correctAccount[strlen(correctAccount - 1)] = '\0';
+        printf("input account:%s\n", account);
+        printf("Correct Account:%s\n", correctAccount);
+        //  Cut the account number and check
         if (strcmp(account, correctAccount) == 0)
         {
             printf("Account Found!\n");
-            fclose(fp);
-            strcpy(correctAccount, str_slice(buff, 36, 6));
-            printf("Correct Password:%s\n", correctPassword);
+
             if (strcmp(password, correctPassword) == 0)
             {
                 printf("Account and Password Correct\n");
                 valid = 1;
             }
         }
+
         printf("end single while loop\n");
     }
     return valid;
@@ -67,6 +89,6 @@ int CheckAccountPassword(char *account, char *password)
 
 int main()
 {
-    printf("%d", CheckAccountPassword("1234567890123456", "123456"));
+    printf("Result:%d", CheckAccountPassword("1234567890123456", "123456"));
     return 0;
 }
