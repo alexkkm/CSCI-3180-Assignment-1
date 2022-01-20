@@ -38,12 +38,13 @@ void writefile()
     fprintf(fw, "Wite sth");
 }
 
+// Copy the (length) characters form (target) string form (poisition)th position
 char *str_slice(char *target, int position, int length)
 {
     char *temp = (char *)malloc(strlen(target) * sizeof(char));
     char subtext[length];
-    strncpy(subtext, &target[position], length - 1);
-    subtext[length - 1] = '\0';
+    strncpy(subtext, &target[position], length);
+    subtext[length] = '\0';
     strcpy(temp, subtext);
     return temp;
 }
@@ -65,7 +66,7 @@ void ReadAccountName(int lineNum)
         strcpy(input, buff);
     }
 
-    printf("%s", str_slice(input, 0, 20));
+    printf("Account Name:%s\n", str_slice(input, 0, 20));
 }
 
 // Not success
@@ -85,12 +86,11 @@ void ReadAccountNumber(int lineNum)
         strcpy(input, buff);
     }
     char i[] = "null";
-    strcpy(i, str_slice(input, 20, 36));
-    // strcpy(i, str_slice(i, 0, -2));
-    printf("%s", i);
+    strcpy(i, str_slice(input, 20, 16));
+    printf("Account Number:%s\n", i);
 }
 
-// Success
+// Fail
 void ReadAccountPassword(int lineNum)
 {
     // READ File
@@ -106,7 +106,26 @@ void ReadAccountPassword(int lineNum)
         fgets(buff, 10000, fp);
         strcpy(input, buff);
     }
-    printf("%s", str_slice(input, 36, 42));
+    printf("Account Password:%s\n", str_slice(input, 36, 6));
+}
+
+// Success
+void ReadAccountBalance(int lineNum)
+{
+    // READ File
+    char buff[10000] = "null";
+    char input[] = "null";
+
+    // open the master.txt with
+    FILE *fp = fopen("./master.txt", "rt");
+
+    // fgets for lineNum times so that we can read the (lineNum)th lines
+    for (int i = 0; i < lineNum; i++)
+    {
+        fgets(buff, 10000, fp);
+        strcpy(input, buff);
+    }
+    printf("Account Balance:%s\n", str_slice(input, 42, 16));
 }
 
 void TestGetFirstUserAccount()
@@ -118,6 +137,10 @@ void TestGetFirstUserAccount()
 int main()
 {
     printf("Testing:\n");
-    ReadAccountPassword(1);
+    ReadAccountName(11);
+    ReadAccountNumber(11);
+    ReadAccountPassword(11);
+    ReadAccountBalance(11);
+
     return 0;
 }

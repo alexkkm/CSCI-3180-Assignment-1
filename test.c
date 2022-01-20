@@ -11,6 +11,7 @@ void simple_str_slice(char *text, int position, int length)
     printf("Substring is:%s", subtext);
 }
 
+// copy the
 char *str_cut(char *text, int position, int length)
 {
     char subtext[length];
@@ -25,8 +26,8 @@ char *str_slice(char *target, int position, int length)
 {
     char *temp = (char *)malloc(strlen(target) * sizeof(char));
     char subtext[length];
-    strncpy(subtext, &target[position], length - 1);
-    subtext[length - 1] = '\0';
+    strncpy(subtext, &target[position], length);
+    subtext[length] = '\0';
     strcpy(temp, subtext);
     return temp;
 }
@@ -34,7 +35,7 @@ char *str_slice(char *target, int position, int length)
 int main(void)
 {
     // str_slice("012345678901234567890", 2, 18);
-    printf("%s", str_slice("012345678901234567890", 2, 19));
+    printf("%s", str_slice("012345678901234567890123456", 24, 26)); // 2,15 FIrst:2-15 Second 2,17
 
     return 0;
 }
