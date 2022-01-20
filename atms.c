@@ -3,6 +3,31 @@
 #include <string.h>
 #include <math.h>
 
+// Return 0 if account password pair not found, return 1 if found
+int CheckAccountPassword(char *account, char *password)
+{
+    // READ File
+    char buff[10000] = "null";
+    char input[58];
+    int valid = 0;
+    char *correctAccount;
+    // open the master.txt with
+    FILE *fp = fopen("./master.txt", "rt");
+    // fgets for lineNum times so that we can read the (lineNum)th lines
+    while (fgets(buff, 60, fp) != NULL)
+    {
+        strcpy(input, buff);
+        // Cut the account number and check
+        if (strcmp(account, strcpy(correctAccount, str_slice(input, 20, 16))))
+        {
+            printf("Corret");
+        }
+        // cut the account password and check
+    }
+
+    return valid;
+}
+
 int main()
 {
     int atm_num = 0;
@@ -34,22 +59,16 @@ int main()
     }
     /* atm_num now will either be 1(711) or 2(713)*/
 
-    /*
-        // Account & Password
-        int valid = 0;
-        while (valid == 0)
-        {
-            printf("=> ACCOUNT\n");
-            scanf("%d", &account);
-            printf("=> PASSWORD\n");
-            scanf("%d", &password);
+    // Check Account & Password
+    int valid = 0;
+    while (valid == 0)
+    {
+        printf("=> ACCOUNT\n");
+        scanf("%d", &account);
+        printf("=> PASSWORD\n");
+        scanf("%d", &password);
+    }
 
-            // Scan for the account and password
-            fp = fopen("master.txt", "R");
-            fscanf(fp, "%s", buff);
-            printf("%s", buff);
-        }
-    */
     // THE END
     return 0;
 }
