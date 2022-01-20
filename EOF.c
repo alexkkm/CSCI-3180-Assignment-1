@@ -46,17 +46,12 @@ int CheckAccountPassword(char *account, char *password)
     while (fgets(buff, 60, fp) != NULL)
     {
         strcpy(input, buff);
-        strcpy(input2, input);
-        printf("input before slice:%s\n", input);
-        printf("input2 before slice:%s\n", input2);
         strcpy(correctAccount, str_slice(input, 20, 16));
-        printf("input2 after slice:%s\n", input2);
-        printf("Correct Account:%s\n", correctAccount);
         // Cut the account number and check
         if (strcmp(account, correctAccount) == 0)
         {
             printf("Account Found!\n");
-            printf("account in if:%s\n", account); // ERROR: cant find the string (input) in this scope
+            fclose(fp);
             strcpy(correctAccount, str_slice(buff, 36, 6));
             printf("Correct Password:%s\n", correctPassword);
             if (strcmp(password, correctPassword) == 0)
