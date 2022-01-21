@@ -46,20 +46,45 @@ int CheckAccountPassword(char *account, char *password)
     return valid;
 }
 
-int GetAccountBalance(account)
+int GetAccountBalance(char *account)
 {
-    char buff[60] = "";
+    char buff[60] = "null";
     char input[59];
+    char targetAccount[17];
     int balance;
     char balanceStr[17];
+    char balanceValue[16];
 
     // open the master.txt with
     FILE *fp = fopen("./master.txt", "rt");
     // fgets for lineNum times so that we can read the (lineNum)th lines
     while (fgets(buff, 60, fp) != NULL)
     {
-        strcpy(balanceStr, str_slice(input, 42, 16));
-        printf("balance String:%s", balanceStr);
+
+        strcpy(input, buff);
+        printf("input:%s\n", input);
+        strcpy(targetAccount, str_slice(input, 20, 16));
+
+        // find the target account
+        if (strcmp(account, targetAccount) == 0)
+        {
+            printf("Account Found!\n");
+            strcpy(balanceStr, str_slice(input, 42, 16));
+            printf("balance String:%s\n", balanceStr);
+            // copy the string og value of balanceStr string into balanceValue string
+            strcpy(balanceValue, str_slice(balanceStr, 1, 15));
+            printf("balance vale String:%s\n", balanceValue); // CORRECT!!!!!!!!!!!!!!!!!!!
+
+            // if balance string[0] is "+", the balance should be positive
+            if (balanceStr[0] = '+')
+            {
+                balance = atoi(balanceValue);
+            }
+            else if (balanceStr[0] = '-') // balance is negative
+            {
+                balance = atoi(balanceValue) * (-1);
+            }
+        }
     }
 
     return balance;
@@ -68,65 +93,6 @@ int GetAccountBalance(account)
 
 int main()
 {
-    int atm_num = 0;
-    FILE *fp;
-
-    char account[17] = "";
-    char password[7] = "";
-
-    // Opening
-    printf("###  Gringotts Wizarding Bank ###\n");
-    printf("###           Welcome         ###\n");
-    printf("###                           ###\n");
-
-    // Choosing ATM
-    while (atm_num != 1 || atm_num != 2)
-    {
-        printf("=> PLEASE CHOOSE THE ATM\n");
-        printf("=> PRESS 1 FOR ATM 711\n");
-        printf("=> PRESS 2 FOR ATM 713\n");
-        scanf("%d", &atm_num);
-        if (atm_num == 1 || atm_num == 2)
-        {
-            break;
-        }
-        else
-        {
-            continue;
-
-            printf("=> INVALID INPUT\n");
-        }
-    }
-    /* atm_num now will either be 1(711) or 2(713)*/
-
-    // Check Account & Password
-    int validAccountPassword = 0;
-    while (validAccountPassword == 0)
-    {
-        printf("=> ACCOUNT\n");
-        scanf("%s", account);
-
-        printf("=> PASSWORD\n");
-        scanf(" %s", password);
-
-        if (CheckAccountPassword(account, password))
-        {
-            validAccountPassword = 1;
-        }
-        else
-        {
-            printf("=> INCORRECT ACCOUNT/PASSWORD\n");
-        }
-    }
-
-    // Check Account Balance Postive
-    int positive_balance = 0;
-    if (GetAccountBalance(account) < 0)
-    {
-        printf("=> NEGATIVE REMAINS TRANSACTION ABORT");
-        exit(1);
-    }
-
-    // THE END
+    printf("Result:%d", GetAccountBalance("1234567890123456"));
     return 0;
 }

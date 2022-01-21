@@ -1,3 +1,4 @@
+0121 1841   only need to fix atoi() for returning balance value
 0121 1600   Solved the account password problem
 0120 1704   Solving Account and Password Problem
 0120 1411   Solved the reading problem
