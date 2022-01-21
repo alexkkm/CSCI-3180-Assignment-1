@@ -33,12 +33,11 @@ void ReadAllLine()
 int CheckAccountPassword(char *account, char *password)
 {
     // READ File
-    char buff[10000] = "null";
-    char input[58];
-    char input2[58];
+    char buff[60] = "null";
+    char input[59];
     int valid = 0;
-    char correctAccount[16];
-    char correctPassword[6];
+    char correctAccount[17];
+    char correctPassword[7];
 
     // open the master.txt with
     FILE *fp = fopen("./master.txt", "rt");
@@ -61,6 +60,10 @@ int CheckAccountPassword(char *account, char *password)
                 printf("Account and Password Correct\n");
                 valid = 1;
             }
+            else
+            {
+                printf("Password Incorrect!\n");
+            }
         }
         printf("end single while loop\n\n");
     }
@@ -69,6 +72,6 @@ int CheckAccountPassword(char *account, char *password)
 
 int main()
 {
-    printf("Result:%d", CheckAccountPassword("1234567890123456", "123456"));
+    printf("Result:%d", CheckAccountPassword("1234567890123456", "123457"));
     return 0;
 }

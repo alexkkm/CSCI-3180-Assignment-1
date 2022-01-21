@@ -18,12 +18,11 @@ char *str_slice(char *target, int position, int length)
 int CheckAccountPassword(char *account, char *password)
 {
     // READ File
-    char buff[10000] = "null";
-    char input[58];
-    // char input2[58];
+    char buff[60] = "null";
+    char input[59];
     int valid = 0;
-    char correctAccount[16];
-    char correctPassword[6];
+    char correctAccount[17];
+    char correctPassword[7];
 
     // open the master.txt with
     FILE *fp = fopen("./master.txt", "rt");
@@ -46,6 +45,10 @@ int CheckAccountPassword(char *account, char *password)
                 printf("Account and Password Correct\n");
                 valid = 1;
             }
+            else
+            {
+                printf("Password Incorrect!\n");
+            }
         }
         printf("end single while loop\n\n");
     }
@@ -57,8 +60,8 @@ int main()
     int atm_num = 0;
     FILE *fp;
 
-    char account[16] = "a";
-    char password[6] = "b";
+    char account[17] = "";
+    char password[7] = "";
 
     // Opening
     printf("###  Gringotts Wizarding Bank ###\n");
@@ -78,6 +81,8 @@ int main()
         }
         else
         {
+            continue;
+
             printf("=> INVALID INPUT\n");
         }
     }
@@ -93,10 +98,15 @@ int main()
         scanf("%s", account);
         printf("account after scan:%s\n", account);
         printf("=> PASSWORD\n");
-        scanf("%s", password);
+        scanf(" %s", password);
         printf("password after scan:%s\n", password);
+        printf("account after scan password:%s\n", account);
 
-        printf("Validation:%d\n", CheckAccountPassword(account, password));
+        if (CheckAccountPassword(account, password))
+        {
+            valid = 1;
+            printf("Pass");
+        }
     }
 
     // THE END
