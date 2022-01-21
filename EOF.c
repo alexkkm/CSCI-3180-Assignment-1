@@ -47,12 +47,14 @@ int CheckAccountPassword(char *account, char *password)
     {
         strcpy(input, buff);
         strcpy(correctAccount, str_slice(input, 20, 16));
+        printf("Input Account:%s\n", account);
+        printf("Correct Account:%s\n", correctAccount);
         // Cut the account number and check
         if (strcmp(account, correctAccount) == 0)
         {
             printf("Account Found!\n");
-            fclose(fp);
-            strcpy(correctAccount, str_slice(buff, 36, 6));
+            // fclose(fp);
+            strcpy(correctPassword, str_slice(buff, 36, 6));
             printf("Correct Password:%s\n", correctPassword);
             if (strcmp(password, correctPassword) == 0)
             {
@@ -60,13 +62,13 @@ int CheckAccountPassword(char *account, char *password)
                 valid = 1;
             }
         }
-        printf("end single while loop\n");
+        printf("end single while loop\n\n");
     }
     return valid;
 }
 
 int main()
 {
-    printf("%d", CheckAccountPassword("1234567890123456", "123456"));
+    printf("Result:%d", CheckAccountPassword("1234567890123456", "123456"));
     return 0;
 }
